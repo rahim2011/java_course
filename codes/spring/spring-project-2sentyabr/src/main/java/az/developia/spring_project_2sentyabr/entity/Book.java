@@ -1,10 +1,14 @@
 package az.developia.spring_project_2sentyabr.entity;
 
+import org.springframework.stereotype.Component;
+
 public class Book {
 private Integer id;
 private String name;
 private Double price;
 private Integer pageCount;
+
+@Component
 public Book() {
 	this.id=1;
 	this.name="Harry Potter";
@@ -35,6 +39,11 @@ public Integer getPageCount() {
 public void setPageCount(Integer pageCount) {
 	this.pageCount = pageCount;
 }
+@Override
+public String toString() {
+	return "Book [id=" + id + ", name=" + name + ", price=" + price + ", pageCount=" + pageCount + "]";
+}
+
 
 
 }
