@@ -2,8 +2,7 @@ package az.developia.spring_project_2sentyabr.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import az.developia.spring_project_2sentyabr.entity.Computer;
-import az.developia.spring_project_2sentyabr.entity.Student;
+
 @Configuration
 public class MyConfig {
 	
