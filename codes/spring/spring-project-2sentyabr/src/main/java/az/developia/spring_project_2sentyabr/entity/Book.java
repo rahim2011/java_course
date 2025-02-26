@@ -1,6 +1,7 @@
 package az.developia.spring_project_2sentyabr.entity;
 
 import org.springframework.stereotype.Component;
+@Component
 
 public class Book {
 private Integer id;
@@ -8,7 +9,6 @@ private String name;
 private Double price;
 private Integer pageCount;
 
-@Component
 public Book() {
 	this.id=1;
 	this.name="Harry Potter";

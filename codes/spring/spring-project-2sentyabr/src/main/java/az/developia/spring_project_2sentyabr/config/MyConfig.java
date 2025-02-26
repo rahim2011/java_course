@@ -7,20 +7,18 @@ import org.springframework.context.annotation.Primary;
 public class MyConfig {
 	
 	@Bean
-	public Student myStudent2() {
-		Student s=new Student();
-		s.setId(45);
-		s.setName("Fuad");
-		s.setSurname("Bayramov");
-		return s;
-	}
-	
-	@Bean
 	@Primary
 	public Computer myComp2() {
 		Computer c=new Computer();
-		c.setId(123);
+		c.setId(1);
 		c.setModel("g65");
 		return c;
+	}
+	
+	public Ram ram() {
+		Ram rm=new Ram();
+		rm.setSpeed(12);
+		rm.setModel("core");
+		return rm;
 	}
 }
