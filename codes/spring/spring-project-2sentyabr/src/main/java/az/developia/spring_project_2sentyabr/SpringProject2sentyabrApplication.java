@@ -13,7 +13,7 @@ public class SpringProject2sentyabrApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext  r=SpringApplication.run(SpringProject2sentyabrApplication.class, args);
 		
-		Book bean=r.getBean(Book.class);
+		/*Book bean=r.getBean(Book.class);
 		System.out.println(bean.getName());
 		  
 		Computer bean1=r.getBean(Computer.class);
@@ -22,7 +22,7 @@ public class SpringProject2sentyabrApplication {
 		String[] beanDefinitionNames=r.getBeanDefinitionNames();
 		for(String names : beanDefinitionNames) {
 			System.out.println(names);
-		}
+		}*/
 	}
 
 }
