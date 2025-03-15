@@ -1,6 +1,7 @@
 package az.developia.spring_project_2sentyabr.controller;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +47,22 @@ public void addStudent(@Valid  @RequestBody Student student,BindingResult br) {
 	try {
 		Connection connection=dataSource.getConnection();
 		Statement st=connection.createStatement();
-		String query="insert into students(name,surname) values('"+student.getName()+"','"+student.getSurname()+"')";
-				st.executeUpdate(query);
-		connection.close();
+		String query="select * from students";
+		ResultSet executeQuery = st.executeQuery(query);
+		while(executeQuery.next()) {
+			Student s =new Student();
+			s.setId(executeQuery.getInt("id"));
+			s.setName(executeQuery.getString("name"));
+			s.setSurname(executeQuery.getString("surname"));
+			
+			students.add(s);
 		}
+		}
+			
 	catch(Exception e) {
 		System.out.println(e.getMessage());
 	}
+	return students;
 	
 	
 
