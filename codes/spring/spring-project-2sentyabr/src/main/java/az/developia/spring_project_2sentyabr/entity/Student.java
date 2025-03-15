@@ -16,7 +16,7 @@ public class Student {
 private String name;
 private String surname;
 
-public Student(Integer id, @Size(min = 2, max = 40, message = "ad min 2,max 40 simvol ola biler.") String name,
+public Student(Integer id,  String name,
 		String surname) {
 	super();
 	this.id = id;
