@@ -24,7 +24,7 @@ public Student(Integer id,  String name,
 	this.surname = surname;
 }
 
-public int getId() {
+public Integer getId() {
 	return id;
 }
 
