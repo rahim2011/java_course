@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import az.developia.spring_project_2sentyabr.dto.StudentRequestDto;
 import az.developia.spring_project_2sentyabr.entity.Student;
 import az.developia.spring_project_2sentyabr.exception.OurRuntimeException;
 import az.developia.spring_project_2sentyabr.repository.StudentRepository;
@@ -40,16 +41,17 @@ private StudentResponse showStudentRest() {
 }
 
 @PostMapping(path="/add")
-public void addStudent(@Valid  @RequestBody Student student,BindingResult br) {
+public void addStudent(@Valid  @RequestBody StudentRequestDto dto,BindingResult br) {
 	
 	if(br.hasErrors()) {
 		throw new OurRuntimeException(br,"melumatlarin tamliginda problem var");
 	}
-	System.out.println(student);
-
-studentRepository.save(student);
-student.setId(null);
-
+	Student s =new Student(null, null, null);
+	s.setId(null);
+	s.setName(dto.getName());
+	s.setSurname(dto.getSurname());
+	
+	studentRepository.save(s);
 }
 @PutMapping(path="/update")
 public void update(@Valid  @RequestBody Student student,BindingResult br) {
