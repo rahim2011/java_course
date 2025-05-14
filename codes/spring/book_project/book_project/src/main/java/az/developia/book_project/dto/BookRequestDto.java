@@ -17,6 +17,10 @@ private String title;
 private String author;
 	@Past
 	private LocalDate year;
+	public Object getGenre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }
