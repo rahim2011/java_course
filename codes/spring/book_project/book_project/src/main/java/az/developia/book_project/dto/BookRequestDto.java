@@ -1,26 +1,22 @@
 package az.developia.book_project.dto;
-
 import java.time.LocalDate;
 
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-@Setter
+
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Schema(name = "Movie Request Dto",description = "melumatlarin qebul eden dto")
 public class BookRequestDto {
 	private Integer id;
-	
-	@Size(min=2,max=40,message="ad min 2,max 40 simvol ola biler.")
-private String title;
-	@Size(min=2,max=40,message="ad min 2,max 40 simvol ola biler.")
-private String author;
-	@Past
+	private String title;
 	private LocalDate year;
-	public Object getGenre() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	private String author;
+	private Integer userId;
 
 }

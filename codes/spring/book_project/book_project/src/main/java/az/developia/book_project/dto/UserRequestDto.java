@@ -14,5 +14,6 @@ public class UserRequestDto {
 	private String lastname;
 	private String username;
 	private String password;
+	@ValidEmail
 	private String email;
 }

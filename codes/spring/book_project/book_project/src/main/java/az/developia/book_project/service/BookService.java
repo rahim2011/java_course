@@ -1,8 +1,11 @@
 package az.developia.book_project.service;
-
-
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +25,7 @@ import az.developia.book_project.response.BookResponse;
 public class BookService {
 
 	@Autowired
-	private BookRepository movieRepository;
+	private BookRepository bookRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -34,11 +37,11 @@ public class BookService {
 
 		Book book = new Book();
 		book.setId(null);
-		book.setGenre(dto.getGenre());
-		book.setRating(dto.getRating());
+        book.setYear(dto.getYear());
+        book.setAuthor(dto.getAuthor());
 		book.setTitle(dto.getTitle());
-		book.setUserId(id);
-		movieRepository.save(book);
+	book.setUserId(id);
+		bookRepository.save(book);
 	}
 
 	public BookResponse get() {
@@ -47,33 +50,64 @@ public class BookService {
 		Integer id = user.getId();
 
 		BookResponse response = new BookResponse();
-		response.seBooks(bookRepository.findByUserId(id));
+
+
+		List<String> books=bookRepository.findByUserId(id); 
+
+		Function<Book, String> f = new Function<Book, String>() {
+
+			@Override
+			public String apply(Book t) {
+				return t.getTitle();
+			}
+		};
+
+		Predicate<String> pre=new Predicate<String>() {
+
+			@Override
+			public boolean test(String t) {
+				return t.contains("a");
+			}
+		};
+
+		List<String> filteredBooks = books.stream()
+		.map(f).filter(pre).collect(Collectors.toList());
+
+		response.setBooks(filteredBooks);
+
+
 		return response;
 	}
 
-	public List<String> getMovieTitle() {
-		return movieRepository.getMovieNames();
+	public List<String> getBookTitle() {
+		return bookRepository.getBookNames();
 	}
 
 	public void delete(Integer id) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		User operatorUser = userRepository.getUserByUsername(username);
-		
-		if (id == null || id<=0) {
+
+		if (id == null || id <= 0) {
 			throw new OurRuntimeException(null, "id mutleqdir");
 		}
-		Optional<Book> book = bookRepository.findById(id);
-		if (movie.isPresent()) {
-			if (movie.get().getUserId() == operatorUser.getId()) {
-				movieRepository.deleteById(id);
-				
-			}else {
-				throw new OurRuntimeException(null, "oz filminini sil");
+
+		Book book = bookRepository.findById(id).orElseThrow(() -> new OurRuntimeException(null, "id tapilmadi"));
+		
+		Supplier<OurRuntimeException> s = new Supplier<OurRuntimeException>() {
+			
+			@Override
+			public OurRuntimeException get() {
+				return new OurRuntimeException(null, "id tapilmadi");
 			}
-		}else {
-			throw new OurRuntimeException(null, "id tapilmadi");
+		};
+		
+
+		if (book.getUserId() == operatorUser.getId()) {
+		bookRepository.deleteById(id);
+
+		} else {
+			throw new OurRuntimeException(null, "oz filminini sil");
 		}
 	}
 
-	
 }

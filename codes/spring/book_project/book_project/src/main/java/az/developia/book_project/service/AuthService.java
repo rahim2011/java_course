@@ -1,15 +1,21 @@
 package az.developia.book_project.service;
+
+
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import az.developia.book_project.dto.UserRequestDto;
+import az.developia.book_project.entity.Authorities;
 import az.developia.book_project.entity.User;
 import az.developia.book_project.exception.InvalidCredentialsException;
 import az.developia.book_project.exception.OurRuntimeException;
+import az.developia.book_project.repository.AuthorityRepository;
 import az.developia.book_project.repository.BookRepository;
 import az.developia.book_project.repository.UserRepository;
 import az.developia.book_project.util.JwtUtil;
@@ -20,8 +26,9 @@ import lombok.RequiredArgsConstructor;
 public class AuthService {
 
 	private final UserRepository userRepository; // 123
-	private final BookRepository bookRepository;
+	private final BookRepository movieRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final AuthorityRepository authorityRepository;
 	private final JwtUtil jwtUtil;
 
 	public String create(UserRequestDto dto) {
@@ -33,12 +40,18 @@ public class AuthService {
 		String encode = passwordEncoder.encode(dto.getPassword());
 
 		User user = new User();
-		user.setFirstname(dto.getFirstname());
-		user.setFirstname(dto.getFirstname());
+		user.setFirstName(dto.getFirstname());
+		user.setLastName(dto.getFirstname());
 		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
 		user.setPassword(encode);
 		userRepository.save(user);
+		
+		Authorities a1=new Authorities();
+		a1.setUsername(user.getUsername());
+		a1.setAuthority("ROLE_ADD_MOVIE");
+		authorityRepository.save(a1);
+
 		return "User create successfully";
 
 	}
@@ -50,14 +63,19 @@ public class AuthService {
 			throw new InvalidCredentialsException("Username or pasword incorrect");
 		}
 
-		return jwtUtil.generateToken(user.get().getUsername(),user.get().getFirstname(),user.get().getFirstname(),user.get().getEmail());
+		
+		List<String> authorityList =  authorityRepository.findByUsername(user.get().getUsername()).stream()
+				.map(Authorities :: getAuthority)
+				.collect(Collectors.toList());
+				
+		return jwtUtil.generateToken(user.get().getUsername(),user.get().getFirstName(),user.get().getLastName(),user.get().getEmail(),authorityList);
 	}
 
-	public ResponseEntity<Map<String, String>> getUserDetail(String token) {
+	public ResponseEntity<Map<String, Object>> getUserDetail(String token) {
 		if (token.startsWith("Bearer")) {
 			token=token.substring(7);
 		}
-		Map<String,String> claims = jwtUtil.extractClaims(token);
+		Map<String, Object> claims = jwtUtil.extractClaims(token);
 		return ResponseEntity.ok(claims);
 	}
 
@@ -69,7 +87,7 @@ public class AuthService {
 		if (finded.isPresent()) {
 			User user = finded.get();
 			userRepository.deleteById(id);
-			bookRepository.deleteUserBooks(user.getId());
+			movieRepository.deleteUserBooks(user.getId());
 		}else {
 			throw new OurRuntimeException(null, "id tapilmadi");
 		}

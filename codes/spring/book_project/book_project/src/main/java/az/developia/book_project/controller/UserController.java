@@ -1,4 +1,6 @@
 package az.developia.book_project.controller;
+
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/profile")
-	public ResponseEntity<Map<String, String>> getUserDetails(@RequestHeader("Authorization") String token){
+	public ResponseEntity<Map<String, Object>> getUserDetails(@RequestHeader("Authorization") String token){
 		return service.getUserDetail(token);
 	}
 
@@ -50,5 +52,5 @@ public class UserController {
 	public void deleteUser(@PathVariable Integer id) {
 		service.delete(id);
 	}
-	
+
 }

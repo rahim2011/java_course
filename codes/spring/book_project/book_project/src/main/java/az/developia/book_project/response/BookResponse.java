@@ -2,13 +2,17 @@ package az.developia.book_project.response;
 
 import java.util.List;
 
-import az.developia.book_project.entity.Book;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookResponse {
-private List<Book> books;
+private List<String> books;
+
 
 }
