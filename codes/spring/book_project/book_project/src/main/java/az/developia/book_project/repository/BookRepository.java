@@ -12,7 +12,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer>{
 
-	List<String> findByUserId(Integer id);
+	List<Book> findByUserId(Integer id);
 
 	@Query(value = "Delete from movies where user_id=?1",nativeQuery = true)
 	@Modifying

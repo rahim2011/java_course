@@ -52,7 +52,7 @@ public class BookService {
 		BookResponse response = new BookResponse();
 
 
-		List<String> books=bookRepository.findByUserId(id); 
+		List<Book> books=bookRepository.findByUserId(id); 
 
 		Function<Book, String> f = new Function<Book, String>() {
 
@@ -70,9 +70,10 @@ public class BookService {
 			}
 		};
 
-		List<String> filteredBooks = books.stream()
-		.map(f).filter(pre).collect(Collectors.toList());
-
+	
+  
+		List<String> filteredBooks =books.stream()
+				.map(f).filter(pre).collect(Collectors.toList());
 		response.setBooks(filteredBooks);
 
 

@@ -24,18 +24,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
-@RequestMapping(path = "/movies")
+@RequestMapping(path = "/books")
 @CrossOrigin(origins = "*")
 @SecurityRequirement(name = "bearerAuth")
-@Tag(name = "Movie Controller",description = "Movie apileri")
+@Tag(name = "Movie Controller",description = "Book apileri")
 public class BookRestController {
 
 	@Autowired
 	private BookService bookService;
 
 	@GetMapping
-	public String getMovie() {
-		return "get movie";
+	public String getBook() {
+		return "get book";
 	}
 
 	@PostMapping(path = "/add")
@@ -47,8 +47,8 @@ public class BookRestController {
 	@GetMapping(path = "/getAll")
 	
 	@Operation(
-			description = "Get api for Movie",
-			summary = "This is a summary for Movie get api"
+			description = "Get api for Book",
+			summary = "This is a summary for Book get api"
 			)
 	public BookResponse getAll() {
 		return bookService.get();

@@ -40,8 +40,8 @@ public class AuthService {
 		String encode = passwordEncoder.encode(dto.getPassword());
 
 		User user = new User();
-		user.setFirstName(dto.getFirstname());
-		user.setLastName(dto.getFirstname());
+		user.setFirstName(dto.getFirstName());
+		user.setLastName(dto.getLastName());
 		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
 		user.setPassword(encode);
