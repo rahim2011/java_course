@@ -60,7 +60,7 @@ public class AuthService {
 		Optional<User> user = userRepository.findByUsername(dto.getUsername());
 
 		if (!user.isPresent() || !passwordEncoder.matches(dto.getPassword(), user.get().getPassword())) {
-			throw new InvalidCredentialsException("Username or pasword incorrect");
+			throw new RuntimeException("Username or pasword incorrect");
 		}
 
 		
