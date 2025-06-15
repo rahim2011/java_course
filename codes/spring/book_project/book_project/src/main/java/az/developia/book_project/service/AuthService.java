@@ -22,7 +22,7 @@ import az.developia.book_project.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor  
 public class AuthService {
 
 	private final UserRepository userRepository; // 123
@@ -49,7 +49,7 @@ public class AuthService {
 		
 		Authorities a1=new Authorities();
 		a1.setUsername(user.getUsername());
-		a1.setAuthority("ROLE_ADD_MOVIE");
+		a1.setAuthority("ROLE_ADD_BOOK");
 		authorityRepository.save(a1);
 
 		return "User create successfully";

@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping(path = "/books")
 @CrossOrigin(origins = "*")
 @SecurityRequirement(name = "bearerAuth")
-@Tag(name = "Movie Controller",description = "Book apileri")
+@Tag(name = "Book Controller",description = "Book apileri")
 public class BookRestController {
 
 	@Autowired
