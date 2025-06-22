@@ -27,10 +27,10 @@ public class JwtUtil {
 	}
 
 	
-	public String generateToken(String username,String firstName,String lastName,String email,List<String> authorities) {
+	public String generateToken(String username,String email,List<String> authorities) {
 		Map<String, String> claims=new HashMap<String, String>();
-		claims.put("firstName", firstName);
-		claims.put("lastName", lastName);
+	//	claims.put("firstName", firstName);
+	//	claims.put("lastName", lastName);
 		claims.put("email", email);
 
 		String authorityString = String.join(",", authorities);
@@ -63,8 +63,8 @@ public class JwtUtil {
 				.getBody();
 
 		Map<String, Object> claimMap1=new HashMap<>();
-		claimMap1.put("firstName", claims.get("firstName").toString());
-		claimMap1.put("lastName", claims.get("lastName").toString());
+		//claimMap1.put("firstName", claims.get("firstName").toString());
+		//claimMap1.put("lastName", claims.get("lastName").toString());
 		claimMap1.put("email", claims.get("email").toString());
 
 		String authorities = (String) claims.get("authorities");

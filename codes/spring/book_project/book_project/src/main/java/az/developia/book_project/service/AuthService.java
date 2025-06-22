@@ -68,7 +68,7 @@ public class AuthService {
 				.map(Authorities :: getAuthority)
 				.collect(Collectors.toList());
 				
-		return jwtUtil.generateToken(user.get().getUsername(),user.get().getFirstName(),user.get().getLastName(),user.get().getEmail(),authorityList);
+		return jwtUtil.generateToken(user.get().getUsername(),user.get().getEmail(),authorityList);
 	}
 
 	public ResponseEntity<Map<String, Object>> getUserDetail(String token) {
