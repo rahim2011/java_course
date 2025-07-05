@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,14 +24,17 @@ import az.developia.book_project.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor  
+@RequiredArgsConstructor
 public class AuthService {
 
 	private final UserRepository userRepository; // 123
-	private final BookRepository movieRepository;
+	private final BookRepository bookRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthorityRepository authorityRepository;
 	private final JwtUtil jwtUtil;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
 	public String create(UserRequestDto dto) {
 		Optional<User> byUsername = userRepository.findByUsername(dto.getUsername());
@@ -44,12 +49,13 @@ public class AuthService {
 		user.setLastName(dto.getLastName());
 		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
+		modelMapper.map(dto, user);
 		user.setPassword(encode);
 		userRepository.save(user);
-		
+
 		Authorities a1=new Authorities();
 		a1.setUsername(user.getUsername());
-		a1.setAuthority("ROLE_ADD_BOOK");
+		a1.setAuthority("ROLE_ADD_MOVIE");
 		authorityRepository.save(a1);
 
 		return "User create successfully";
@@ -60,14 +66,13 @@ public class AuthService {
 		Optional<User> user = userRepository.findByUsername(dto.getUsername());
 
 		if (!user.isPresent() || !passwordEncoder.matches(dto.getPassword(), user.get().getPassword())) {
-			throw new RuntimeException("Username or pasword incorrect");
+			throw new InvalidCredentialsException("Username or pasword incorrect");
 		}
 
-		
 		List<String> authorityList =  authorityRepository.findByUsername(user.get().getUsername()).stream()
 				.map(Authorities :: getAuthority)
 				.collect(Collectors.toList());
-				
+
 		return jwtUtil.generateToken(user.get().getUsername(),user.get().getEmail(),authorityList);
 	}
 
@@ -87,7 +92,7 @@ public class AuthService {
 		if (finded.isPresent()) {
 			User user = finded.get();
 			userRepository.deleteById(id);
-			movieRepository.deleteUserBooks(user.getId());
+			bookRepository.deleteUserBooks(user.getId());
 		}else {
 			throw new OurRuntimeException(null, "id tapilmadi");
 		}
