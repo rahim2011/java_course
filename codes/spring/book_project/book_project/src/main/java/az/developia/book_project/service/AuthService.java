@@ -1,6 +1,5 @@
 package az.developia.book_project.service;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -32,7 +31,7 @@ public class AuthService {
 	private final PasswordEncoder passwordEncoder;
 	private final AuthorityRepository authorityRepository;
 	private final JwtUtil jwtUtil;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -53,7 +52,7 @@ public class AuthService {
 		user.setPassword(encode);
 		userRepository.save(user);
 
-		Authorities a1=new Authorities();
+		Authorities a1 = new Authorities();
 		a1.setUsername(user.getUsername());
 		a1.setAuthority("ROLE_ADD_MOVIE");
 		authorityRepository.save(a1);
@@ -69,23 +68,22 @@ public class AuthService {
 			throw new InvalidCredentialsException("Username or pasword incorrect");
 		}
 
-		List<String> authorityList =  authorityRepository.findByUsername(user.get().getUsername()).stream()
-				.map(Authorities :: getAuthority)
-				.collect(Collectors.toList());
+		List<String> authorityList = authorityRepository.findByUsername(user.get().getUsername()).stream()
+				.map(Authorities::getAuthority).collect(Collectors.toList());
 
-		return jwtUtil.generateToken(user.get().getUsername(),user.get().getEmail(),authorityList);
+		return jwtUtil.generateToken(user.get().getUsername(), user.get().getEmail(), authorityList);
 	}
 
 	public ResponseEntity<Map<String, Object>> getUserDetail(String token) {
 		if (token.startsWith("Bearer")) {
-			token=token.substring(7);
+			token = token.substring(7);
 		}
 		Map<String, Object> claims = jwtUtil.extractClaims(token);
 		return ResponseEntity.ok(claims);
 	}
 
 	public void delete(Integer id) {
-		if (id == null || id<=0) {
+		if (id == null || id <= 0) {
 			throw new OurRuntimeException(null, "id mutleqdir");
 		}
 		Optional<User> finded = userRepository.findById(id);
@@ -93,7 +91,7 @@ public class AuthService {
 			User user = finded.get();
 			userRepository.deleteById(id);
 			bookRepository.deleteUserBooks(user.getId());
-		}else {
+		} else {
 			throw new OurRuntimeException(null, "id tapilmadi");
 		}
 	}

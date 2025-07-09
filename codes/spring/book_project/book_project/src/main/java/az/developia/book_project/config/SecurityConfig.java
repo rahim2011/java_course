@@ -22,51 +22,37 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfig {
-	
+
 	private final AuthFilter authFilter;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
-            .authorizeHttpRequests(auth -> auth
-            	.requestMatchers(HttpMethod.OPTIONS, "/").permitAll()
-                .requestMatchers("/auth/register").permitAll()
-                .requestMatchers("/auth/login").permitAll()
-                
-                .requestMatchers(
-                        "/swagger-ui/",
-                        "/swagger-ui.html",
-                        "/v3/api-docs/",
-                        "/v3/api-docs",
-                        "/swagger-resources/",
-                        "/webjars/",
-                        "/h2-console/"
-                   ).permitAll()
-                
-                .anyRequest().authenticated()
-            )
-            .exceptionHandling(exc -> exc
-            		.authenticationEntryPoint((request,response,authException) -> {
-            			response.sendError(HttpServletResponse.SC_UNAUTHORIZED); //401
-            		})
-            		)
-            
-            .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
-    	}
- 
-  
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
+				.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/").permitAll()
+						.requestMatchers("/auth/register").permitAll().requestMatchers("/auth/login").permitAll()
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-    	return authenticationConfiguration.getAuthenticationManager();
-    } 
+						.requestMatchers("/swagger-ui/", "/swagger-ui.html", "/v3/api-docs/", "/v3/api-docs",
+								"/swagger-resources/", "/webjars/", "/h2-console/")
+						.permitAll()
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+						.anyRequest().authenticated())
+				.exceptionHandling(exc -> exc.authenticationEntryPoint((request, response, authException) -> {
+					response.sendError(HttpServletResponse.SC_UNAUTHORIZED); // 401
+				}))
+
+				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();
+	}
+
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

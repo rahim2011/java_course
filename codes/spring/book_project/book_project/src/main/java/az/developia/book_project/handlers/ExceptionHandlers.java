@@ -15,13 +15,11 @@ import az.developia.book_project.exception.OurRuntimeException;
 import az.developia.book_project.response.ExceptionResponse;
 import az.developia.book_project.response.ValidationResponse;
 
-
-
 @RestControllerAdvice
 public class ExceptionHandlers {
-	
+
 	@ExceptionHandler
-	@ResponseStatus(code = HttpStatus.UNAUTHORIZED) //401
+	@ResponseStatus(code = HttpStatus.UNAUTHORIZED) // 401
 	public ExceptionResponse handleInvalidCredentilasException(InvalidCredentialsException exc) {
 		ExceptionResponse response = new ExceptionResponse();
 		response.setMessage(exc.getMessage());
@@ -29,13 +27,13 @@ public class ExceptionHandlers {
 	}
 
 	@ExceptionHandler
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST) //400
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST) // 400
 	public ExceptionResponse handle(OurRuntimeException exc) {
 		ExceptionResponse response = new ExceptionResponse();
 		BindingResult br = exc.getBr();
 		if (br == null) {
 
-		}else {
+		} else {
 			List<FieldError> fieldErrors = br.getFieldErrors();
 			List<ValidationResponse> validations = new ArrayList<ValidationResponse>();
 
@@ -55,4 +53,3 @@ public class ExceptionHandlers {
 
 	}
 }
-

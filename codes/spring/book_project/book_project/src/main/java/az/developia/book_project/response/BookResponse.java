@@ -12,8 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookResponse {
-private List<String> books;
-
-
+	private List<String> books;
 
 }

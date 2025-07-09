@@ -1,6 +1,5 @@
 package az.developia.book_project.controller;
 
-
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import az.developia.book_project.exception.OurRuntimeException;
 import az.developia.book_project.service.AuthService;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping(path = "/auth")
 @CrossOrigin(origins = "*")
@@ -31,9 +29,9 @@ public class UserController {
 	private AuthService service;
 
 	@PostMapping(path = "/register")
-	public String createUser(@Valid @RequestBody UserRequestDto dto,BindingResult br) {
+	public String createUser(@Valid @RequestBody UserRequestDto dto, BindingResult br) {
 		if (br.hasErrors()) {
-			throw new OurRuntimeException(br,"");
+			throw new OurRuntimeException(br, "");
 		}
 		return service.create(dto);
 	}
@@ -44,7 +42,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/profile")
-	public ResponseEntity<Map<String, Object>> getUserDetails(@RequestHeader("Authorization") String token){
+	public ResponseEntity<Map<String, Object>> getUserDetails(@RequestHeader("Authorization") String token) {
 		return service.getUserDetail(token);
 	}
 

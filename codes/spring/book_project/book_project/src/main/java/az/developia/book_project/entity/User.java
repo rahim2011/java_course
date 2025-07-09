@@ -32,11 +32,8 @@ public class User {
 	private String password;
 	private String email;
 
-	
 	@ManyToMany
-	@JoinTable(name = "user_movies",
-	joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "movie_id"))
+	@JoinTable(name = "user_movies", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
 	private List<Book> books;
-	
+
 }

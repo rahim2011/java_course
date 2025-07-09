@@ -1,6 +1,6 @@
 package az.developia.book_project.entity;
 
-
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -27,18 +27,16 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 	private String title;
-	private String genre;
-	private Integer rating;
+	private LocalDate year;
+	private String author;
 	private Integer userId;
-	
+
 	@OneToOne(mappedBy = "book")
 	private BookDetails bookDetail;
-	
+
 	@ManyToOne
 	private Category category;
-	
+
 	@ManyToMany(mappedBy = "movies")
 	private List<User> viewers;
 }
-
-

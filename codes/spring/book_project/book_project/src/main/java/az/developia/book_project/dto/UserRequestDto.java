@@ -13,14 +13,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserRequestDto {
 
-	@Size(min= 2, max=50, message = "min 2 max 50 simvol olmalidir")
+	@Size(min = 2, max = 50, message = "min 2 max 50 simvol olmalidir")
 	private String firstName;
 
-	@Size(min= 2, max=50, message = "min 2 max 50 simvol olmalidir")
+	@Size(min = 2, max = 50, message = "min 2 max 50 simvol olmalidir")
 	private String lastName;
 	private String username;
 	private String password;
-	
-	@ValidEmail(message="")
+
+	@ValidEmail(message = "")
 	private String email;
 }

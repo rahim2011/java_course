@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import az.developia.book_project.entity.Authorities;
 
-
-
-public interface AuthorityRepository extends JpaRepository<Authorities, Integer>{
+public interface AuthorityRepository extends JpaRepository<Authorities, Integer> {
 
 	List<Authorities> findByUsername(String username);
 

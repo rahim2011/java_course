@@ -1,5 +1,6 @@
 package az.developia.book_project.service;
 
+
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -8,6 +9,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ import az.developia.book_project.repository.UserRepository;
 import az.developia.book_project.repository.ViewRepository;
 import az.developia.book_project.response.BookResponse;
 import az.developia.book_project.response.BookResponseDto;
+import jakarta.validation.Valid;
 
 
 @Service
@@ -32,9 +35,12 @@ public class BookService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ViewRepository viewRepository;
+
+	@Autowired
+	private ModelMapper mapper;
 	
 
 	public void add(BookRequestDto dto) {
@@ -42,7 +48,7 @@ public class BookService {
 		User user = userRepository.getUserByUsername(username);
 		Integer id = user.getId();
 
-		Book book = new Book();
+	  Book book = new Book();
 		book.setId(null);
 		book.setYear(dto.getYear());
 		book.setAuthor(dto.getAuthor());
@@ -57,7 +63,7 @@ public class BookService {
 		Integer id = user.getId();
 
 		BookResponse response = new BookResponse();
-
+//		response.setMovies(movieRepository.findByUserId(id));
 
 		List<Book> books = bookRepository.findByUserId(id); 
 		Function<Book, String> f = new Function<Book, String>() {
@@ -105,13 +111,13 @@ public class BookService {
 			}
 		};
 
-		Book book = bookRepository.findById(id).orElseThrow(s);
+		Book mobookvie = bookRepository.findById(id).orElseThrow(s);
 
 		if (book.getUserId() == operatorUser.getId()) {
-			bookRepository.deleteById(id);
+			BookRepository.deleteById(id);
 
 		} else {
-			throw new OurRuntimeException(null, "oz filminini sil");
+			throw new OurRuntimeException(null, "oz kitabini sil");
 		}
 	}
 
@@ -138,8 +144,22 @@ public class BookService {
 	}
 
 	public List<TestEntity> findView() {
-		
+
 		return viewRepository.findAll();
+	}
+
+	public void update(@Valid BookRequestDto dto) {
+		if (dto.getId() == null || dto.getId() <= 0) {
+			throw new OurRuntimeException(null, "id is wrong");
+		}
+		Optional<Book> byId = bookRepository.findById(dto.getId());
+		if (byId.isPresent()) {
+			Book book = byId.get();
+			mapper.map(dto, book);
+			bookRepository.save(book);
+		}else {
+			throw new OurRuntimeException(null, "id not found");
+		}
 	}
 
 }

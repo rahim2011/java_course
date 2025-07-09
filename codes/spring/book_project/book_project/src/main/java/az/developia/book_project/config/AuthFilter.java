@@ -27,49 +27,47 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil;
+	private final JwtUtil jwtUtil;
 
 	@Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            chain.doFilter(request, response);
-            return;
-        }
+		String authHeader = request.getHeader("Authorization");
+		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+			chain.doFilter(request, response);
+			return;
+		}
 
-        String token = authHeader.substring(7); // "Bearer " sözünü atırıq
-        String username = jwtUtil.extractUsername(token);
+		String token = authHeader.substring(7); // "Bearer " sözünü atırıq
+		String username = jwtUtil.extractUsername(token);
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-        	Map<String,Object> claims = jwtUtil.extractClaims(token);
-        	//List<String> authorities = (List<String>) claims.get("authorities");
-     
+		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			Map<String, Object> claims = jwtUtil.extractClaims(token);
+			// List<String> authorities = (List<String>) claims.get("authorities");
 
-List<String> authorities = new ArrayList<>();
-        	Object object = claims.get("authorities");
-        	if (object instanceof List) {
+			List<String> authorities = new ArrayList<>();
+			Object object = claims.get("authorities");
+			if (object instanceof List) {
 				authorities = (List<String>) object;
-			}else if(object instanceof String[]) {
+			} else if (object instanceof String[]) {
 				authorities = Arrays.asList((String[]) object);
-			}else if(object instanceof String) {
+			} else if (object instanceof String) {
 				authorities = Arrays.asList((String) object);
 			}
- 
-        	List<SimpleGrantedAuthority> grantedAuthority = authorities.stream()
-        			.map(SimpleGrantedAuthority::new )
-        			.collect(Collectors.toList());
 
-            User userDetails = new User(username, "",grantedAuthority);
+			List<SimpleGrantedAuthority> grantedAuthority = authorities.stream().map(SimpleGrantedAuthority::new)
+					.collect(Collectors.toList());
 
-            UsernamePasswordAuthenticationToken authToken =
-                    new UsernamePasswordAuthenticationToken(userDetails, null, grantedAuthority);
-            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			User userDetails = new User(username, "", grantedAuthority);
 
-            SecurityContextHolder.getContext().setAuthentication(authToken);
-        }
+			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null,
+					grantedAuthority);
+			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-        chain.doFilter(request, response);
-    }
+			SecurityContextHolder.getContext().setAuthentication(authToken);
+		}
+
+		chain.doFilter(request, response);
+	}
 }

@@ -1,6 +1,5 @@
 package az.developia.book_project.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +23,7 @@ public class BookDetails {
 	private Integer Id;
 	private String author;
 	private Double imdb;
-	
+
 	@OneToOne
 	private Book book;
 }
