@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "books")
+@Table(name = "movies")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,8 +27,8 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 	private String title;
-	private LocalDate year;
 	private String author;
+	private LocalDate year;
 	private Integer userId;
 
 	@OneToOne(mappedBy = "book")
@@ -37,6 +37,8 @@ public class Book {
 	@ManyToOne
 	private Category category;
 
-	@ManyToMany(mappedBy = "movies")
+	@ManyToMany(mappedBy = "books")
 	private List<User> viewers;
+	
+	//Dynamic Filtering
 }

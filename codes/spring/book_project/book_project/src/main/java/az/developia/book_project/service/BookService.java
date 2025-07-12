@@ -1,13 +1,12 @@
 package az.developia.book_project.service;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Predicate;
+
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,8 @@ import az.developia.book_project.repository.UserRepository;
 import az.developia.book_project.repository.ViewRepository;
 import az.developia.book_project.response.BookResponse;
 import az.developia.book_project.response.BookResponseDto;
+import az.developia.book_project.response.BookResponseModel;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.validation.Valid;
 
 
@@ -41,18 +42,19 @@ public class BookService {
 
 	@Autowired
 	private ModelMapper mapper;
-	
+
 
 	public void add(BookRequestDto dto) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		User user = userRepository.getUserByUsername(username);
 		Integer id = user.getId();
 
-	  Book book = new Book();
+		Book book = new Book();
 		book.setId(null);
-		book.setYear(dto.getYear());
-		book.setAuthor(dto.getAuthor());
-		book.setTitle(dto.getTitle());
+//		movie.setGenre(dto.getGenre());
+//		movie.setRating(dto.getRating());
+//		movie.setTitle(dto.getTitle());
+		mapper.map(dto, book);
 		book.setUserId(id);
 		bookRepository.save(book);
 	}
@@ -111,10 +113,10 @@ public class BookService {
 			}
 		};
 
-		Book mobookvie = bookRepository.findById(id).orElseThrow(s);
+		Book book = bookRepository.findById(id).orElseThrow(s);
 
 		if (book.getUserId() == operatorUser.getId()) {
-			BookRepository.deleteById(id);
+			bookRepository.deleteById(id);
 
 		} else {
 			throw new OurRuntimeException(null, "oz kitabini sil");
@@ -129,7 +131,7 @@ public class BookService {
 		if (book.isPresent()) {
 			BookResponseDto res = new BookResponseDto();
 			res.setId(book.get().getId());
-			res.setYear(book.get().getYear());
+			res.seYear(book.get().getYear());
 			res.setAuthor(book.get().getAuthor());
 			res.setTitle(book.get().getTitle());
 			return res;
@@ -160,6 +162,17 @@ public class BookService {
 		}else {
 			throw new OurRuntimeException(null, "id not found");
 		}
+	}
+
+	public List<BookResponseModel> convertMovieToResponseModel(List<Book> books) {
+		// TODO Auto-generated method stub
+		List<BookResponseModel> dtos = new ArrayList<BookResponseModel>();
+		for (Book book : books) {
+			BookResponseModel dto = new BookResponseModel();
+			mapper.map(book, dto);
+			dtos.add(dto);
+		}
+		return dtos;
 	}
 
 }

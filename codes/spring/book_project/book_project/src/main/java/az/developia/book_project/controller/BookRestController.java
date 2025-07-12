@@ -4,6 +4,7 @@ package az.developia.book_project.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +21,8 @@ import az.developia.book_project.dto.BookRequestDto;
 import az.developia.book_project.entity.Book;
 import az.developia.book_project.entity.TestEntity;
 import az.developia.book_project.exception.OurRuntimeException;
+import az.developia.book_project.repository.BookRepository;
+import az.developia.book_project.response.BookListResponseModel;
 import az.developia.book_project.response.BookResponse;
 import az.developia.book_project.response.BookResponseDto;
 import az.developia.book_project.service.BookService;
@@ -32,14 +35,22 @@ import jakarta.validation.Valid;
 @RequestMapping(path = "/books")
 @CrossOrigin(origins = "*")
 @SecurityRequirement(name = "bearerAuth")
-@Tag(name = "Book Controller",description = "Vook apileri")
+@Tag(name = "Book Controller",description = "Book apileri")
 public class BookRestController {
 
 	@Autowired
 	private BookService bookService;
 
+	@Autowired
+	private BookRepository bookRepository;
 	
-
+	@Autowired
+	private DynamicFiltering filtering;
+	
+//	@GetMapping
+//	public String getMovie() {
+//		return "get movie";
+//	}
 
 	@PostMapping(path = "/add")
 	@PreAuthorize("hasAuthority('ROLE_ADD_BOOK')")
@@ -58,7 +69,7 @@ public class BookRestController {
 	}
 
 
-
+	// /movies/pagination/begin/0/length/10
 	@GetMapping(path = "/pagination/begin/{begin}/length/{length}")
 	public List<Book> pagination(@PathVariable Integer begin, @PathVariable Integer length) {
 		return bookService.findpagination(begin, length);
@@ -75,10 +86,9 @@ public class BookRestController {
 		bookService.delete(id);
 	}
 
-	@GetMapping(path = "/{id}") 
 	@GetMapping(path = "/{id}",produces = {"application/json","application/xml"}) 
 //	movies/nese
-	public BookResponseDto getById(@PathVariable Integer id) {
+	public BookResponseDto  getById(@PathVariable Integer id) {
 		return bookService.getBookById(id);
 	}
 
@@ -87,13 +97,32 @@ public class BookRestController {
 	public List<TestEntity> getView(){
 		return bookService.findView();
 	}
-	
+
 	@PutMapping(path = "/update")
-	public void movieUpdate(@Valid @RequestBody BookRequestDto dto, BindingResult br) {
+	public void bookUpdate(@Valid @RequestBody BookRequestDto dto, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new OurRuntimeException(br, "");
 		}
 		bookService.update(dto);
+	}
+
+	
+	@GetMapping(path = "/id-title")
+	public MappingJacksonValue getBookIdTitle() {
+		BookListResponseModel response = new BookListResponseModel();
+		List<Book> books = bookRepository.findAll();
+		
+		response.setBookResponse(bookService.convertBookToResponseModel(books));
+		return filtering.filter("movies", response, "id","title");
+	}
+	
+	@GetMapping(path = "/title-genre")
+	public MappingJacksonValue getMovieTitleGenre() {
+		BookListResponseModel response = new BookListResponseModel();
+		List<Book> books = bookRepository.findAll();
+		
+		response.setMovieResponse(bookService.convertBookToResponseModel(books));
+		return filtering.filter("books", response, "year","author");
 	}
 	
 }
