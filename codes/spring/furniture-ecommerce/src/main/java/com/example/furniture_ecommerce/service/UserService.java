@@ -2,6 +2,7 @@ package com.example.furniture_ecommerce.service;
 
 import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.furniture_ecommerce.entity.User;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
 private final UserRepository userRepository;
+private final PasswordEncoder passwordEncoder ;
 
 	public void create(UserRequestDto dto) {
 		Optional<User> byUsername = userRepository.finByUsername(dto.getUsername());
@@ -26,7 +28,10 @@ private final UserRepository userRepository;
 	user.setUsername(dto.getUsername());
 	user.setEmail(dto.getEmail());
 	user.setPassword(dto.getPassword());
+	String encode = passwordEncoder.encode(dto.getPassword());
+	user.setPassword(encode);)
 	userRepository.save(user);
+	
 		
 	}
 

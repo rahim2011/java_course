@@ -24,7 +24,11 @@ public void createUser(@RequestBody UserRequestDto dto, BindingResult br) {
 		throw new OurRuntimeException(br,"");
 	}
 	userService.create(dto);
-} 
-
 }
+@PostMapping(path = "/login")
+	public String userLogin(@RequestBody UserRequestDto d) {
+	return userService().login(d);
+}
+
+		}
 
