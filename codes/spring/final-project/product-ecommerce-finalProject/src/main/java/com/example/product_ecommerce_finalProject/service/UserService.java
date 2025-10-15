@@ -19,7 +19,7 @@ public class UserService {
 
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
-	private JwtUtil jwtUtil;
+	private final JwtUtil jwtUtil;
 	
 	public void create(UserRequestDto dto) {
 		Optional<User> byUsername= userRepository.findByUsername(dto.getUsername());
@@ -46,7 +46,12 @@ public class UserService {
 			throw new OurRuntimeException(null,"Username or password is incorrect.");
 		}
 		
-		return jwtUtil.generateToken(user.get().getUsername());
+		return jwtUtil.generateToken(
+				user.get().getUsername(),
+				user.get().getName(),
+				user.get().getSurname(),
+				user.get().getEmail());
+				
 	}
 
 }

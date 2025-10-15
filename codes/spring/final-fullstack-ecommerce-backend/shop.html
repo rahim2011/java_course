@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - E-commerce</title>
+  
+    <link rel="stylesheet" href="./css/shop.css">
+  
+</head>
+<body>
+
+ 
+  <div class="sale-banner">
+    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! 
+    <a href="#" style="color:white; text-decoration:underline;">ShopNow</a>
+  </div>
+
+
+  <header class="navbar">
+    <h1 class="logo">E-commerce</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="shop.html" class="shop-btn">Shop</a>
+    </nav>
+  </header>
+
+ 
+  <section class="shop-container">
+
+    <aside class="sidebar">
+      <h3>Category</h3>
+      <ul>
+        <li onclick="filterCategory('Clothing')">Clothing</li>
+        <li onclick="filterCategory('Footwear')">Footwear</li>
+        <li onclick="filterCategory('Accessories')">Accessories</li>
+        <li onclick="filterCategory('Tablets')">Tablets</li>
+      </ul>
+    </aside>
+
+    
+    <div class="product-area">
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
+      </div>
+
+      <div class="products" id="productList">
+      
+      </div>
+    </div>
+
+  </section>
+
+  
+    
+ <script src="shop.js"></script>
+</body>
+</html>

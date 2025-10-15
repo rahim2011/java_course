@@ -1,0 +1,105 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+ 
+    .sale-banner {
+      background-color: rgb(255, 71, 71);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+  
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      border-bottom: 3px solid rgb(255, 71, 71);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      margin-left: 25px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: rgb(255, 71, 71);
+    }
+
+    .shop-btn {
+      background-color:  rgb(255, 71, 71);
+      color: white !important;
+      padding: 6px 14px;
+      border-radius: 4px;
+    }
+
+
+    .signup-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 75vh;
+    }
+
+    .signup-box {
+      width: 350px;
+      text-align: center;
+    }
+
+    .signup-box h2 {
+      font-size: 26px;
+      margin-bottom: 25px;
+    }
+
+    .signup-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .signup-box button {
+      width: 100%;
+      background-color: rgb(255, 71, 71);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-box button:hover {
+      background-color: darkred;
+    }
+
+    .signup-box p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .signup-box a {
+      color:  rgb(255, 71, 71);
+      text-decoration: none;
+    }
+
+    .signup-box a:hover {
+      text-decoration: underline;
+    }
