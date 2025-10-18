@@ -53,7 +53,7 @@ public class JwtUtil {
 	}
 	public Map<String,String> exractClaims(String token){
 		Claims claims = Jwts.parserBuilder()
-				.setSigninKey(signinKey)
+				.setSigningKey(signinKey)
 				.build()
 				.parseClaimsJws(token)
 				.getBody();

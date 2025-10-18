@@ -8,7 +8,7 @@
 body{
     font-family: "Poppins", sans-serif;
 }
-
+  
 
 /*header*/
 
@@ -58,49 +58,86 @@ body{
 
 
 
-.sub-main{
-    width: 85%;
-    margin: auto;
-    margin-top: 35px;
+
+.left-side img{
+    width: 550px;
+    height: 500px;
 }
-.sub-main button{
-    padding: 5px 7px;
-    border: none;
+.right-side{
+    padding-top: 80px;
+}
+.right-side h3{
+    color: black;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.right-side p{
+    color: black;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.right-side button{
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    font-size: 16px;
+    padding: 10px 25px;
+    border-radius: 4px;
     cursor: pointer;
-    background-color: rgb(241, 66, 66);
-    border-radius: 3px;
-    color: #fff;
-    font-size: 13px;
 }
-.user-details{
+form {
+    margin-top: 40px;
+}
+form label a{
+    color: black;
+    outline: none;
+    text-decoration: none;
+}
+form .element{
+    width: 400px;
+}
+.element input{
     width: 100%;
-    margin-top: 20px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    outline: none;
     padding: 10px;
+    font-size: 16px;
+}
+form button {
+    width: 150px;
+    height: 50px;
     background-color: #fff;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: 0;
+    border: 1px solid green;
+    color: green;
+    margin-top: 15px;
 }
-.user-details h3{
-    line-height: 2;
-    font-size: 25px;
-    font-weight: 500;
-    color: rgb(218, 14, 14);
+.form-elements{
+    width: 40%;
+    padding-top: 40px;
+    margin: auto;
 }
-.user-details p{
-    line-height: 2;
-    font-size: 18px;
-    word-spacing: 5px;
+.form-elements .my-products{
+    margin-left: 30px;
+    padding: 8px 30px;
+    outline: none;
+    border: none;
+    background-color: #808080;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
 }
-
-.part1 {
-    padding-top: 10px;
-    padding-right: 70px;
-   
-}
-
-.part1 p {
-    color: white;
-    background-color: rgb(228, 47, 47);
+.form-element{
     width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

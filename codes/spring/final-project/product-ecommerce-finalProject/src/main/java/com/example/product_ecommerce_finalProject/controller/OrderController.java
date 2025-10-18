@@ -24,7 +24,6 @@ public class OrderController {
 	private OrderService orderService;
 
 	@PostMapping(path = "/add")
-	public ResponseEntity<String> order(@RequestBody OrderRequestDto dto){
 	public ResponseEntity<String> order(@Valid @RequestBody OrderRequestDto dto, BindingResult br){
 		if (br.hasErrors()) {
 			throw new OurRuntimeException(br, "melumatlarin tamliginda problem var");
@@ -33,4 +32,3 @@ public class OrderController {
 		return ResponseEntity.ok("Order was created successfully");
 	}
 	}
-}

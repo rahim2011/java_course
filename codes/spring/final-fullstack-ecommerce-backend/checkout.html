@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/checkout.css">
+    <title>CheckOut</title>
+</head>
+<body>
+    
+  <div class="sale-banner">
+    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" style="color:white; text-decoration:underline;">Shop Now</a>
+  </div>
+
+  <header class="navbar">
+    <h1 class="logo">E-commerce</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="shop.html" class="shop-btn">Shop</a>
+    </nav>
+  </header>
+
+
+    <main>
+        <div class="sub-main">
+            <a href="#"></a>
+            <div class="left-side">
+                <h2>Billing Details</h2>
+                <div class="form-element">
+                    <form>
+                        <div class="fullName">
+                            <div class="firstName">
+                                <label for="">First Name</label> <br>
+                                <input type="text" id="firstName" autocomplete="off">
+                            </div>
+                            <div class="lastName">
+                                <label for="">Last Name</label> <br>
+                                <input type="text" id="lastName" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="country">
+                            <label for="">Country</label> <br>
+                            <select name="" id="country" style="padding-left: 10px; padding-right: 30px;">
+                                <option value="">Country</option>
+                                <option value="Azerbaijan">Azerbaijan</option>
+                                <option value="Turkiye">Turkiye</option>
+                                <option value="Ingiltere">Ingiltere</option>
+                                <option value="Ispaniya">Ispaniya</option>
+                                <option value="Rusiya">Rusiya</option>
+                                <option value="Iran">Iran</option>
+                            </select>
+                        </div>
+                        <div class="address">
+                            <label for="">Address</label> <br>
+                            <input type="text" id="address" autocomplete="off">
+                        </div>
+                        <div class="city">
+                            <label for="">Town/City</label> <br>
+                            <input type="text" id="city" autocomplete="off">
+                        </div>
+                        <div class="phone">
+                            <label for="">Phone</label> <br>
+                            <input type="text" id="phone" autocomplete="off">
+                        </div>
+                        <div class="email">
+                            <label for="">Email</label> <br>
+                            <input type="email" id="email" autocomplete="off">
+                        </div>
+                        <div class="cart-number">
+                            <label for="">Cart Number</label> <br>
+                            <input type="text" id="cartNumber" autocomplete="off">
+                        </div>
+                        <div class="zip-code">
+                            <label for="">Zip Code</label> <br>
+                            <input type="text" id="zipCode" autocomplete="off">
+                        </div>
+                        <div class="expiry-month">
+                            <label for="">Expiry Month</label> <br>
+                            <input type="text" id="expiryMonth" autocomplete="off">
+                        </div>
+                        <div class="expiry-year">
+                            <label for="">Expiry Year</label> <br>
+                            <input type="number" id="expiryYear" autocomplete="off">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="cart-totals">
+                    <div>
+                        <h3>Product</h3>
+                        <h3>Subtotal</h3>
+                    </div>
+                    <div class="subtotal">
+                        <h4>Subtotal</h4>
+                        <p id="sub-total">0 AZN</p>
+                    </div>
+                    <div class="total">
+                        <h4>Total</h4>
+                        <p id="total">0 AZN</p>
+                    </div>
+                    <hr>
+                    <p class="info">Your personal data will be used to support your experience throughout this website, to manage access to your account and for other purposes described in our <b>privacy policy</b></p>
+                    <div class="btn">
+                        <button id="orderBtn">Place order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Exclusive</h4>
+        <p>Get 10% off your first order</p>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <p>111 Bijoy sarani, Dh 1515, Bangladesh</p>
+        <p>exclusive@gmail.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <p>My Account</p>
+        <p>Login / Register</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Link</h4>
+        <p>Privacy Policy</p>
+        <p>Terms Of Use</p>
+        <p>FAQ</p>
+      </div>
+      <div class="footer-col">
+        <h4>Download App</h4>
+        <p>Save $3 with App New User Only</p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="./js/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>

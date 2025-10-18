@@ -26,6 +26,7 @@ public class Product {
 	private Double price;
 	private String category;
 	private Integer rating;
+	private String description;
 
 	@Column(columnDefinition = "TEXT")
 	private String image;

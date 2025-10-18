@@ -8,18 +8,13 @@ function loadOnProducts() {
             'Authorization': `Bearer ${token}`
         }
     })
-   
         .then(async response => {
             if (response.ok) {
                 let data = await response.json();
                 console.log(data);
 
-    
                 let products_tbody = document.getElementById("products-tbody");
 
-            let tableContent = '';
-            data.products.forEach(element => {
-                tableContent += `
                 let tableContent = '';
                 data.products.forEach(element => {
                     tableContent += `
@@ -35,11 +30,6 @@ function loadOnProducts() {
                 </tr>
                 
                 `
-            })
-            
-            products_tbody.innerHTML += tableContent;
-        }
-    })
                 })
 
                 products_tbody.innerHTML += tableContent;
@@ -59,7 +49,6 @@ document.addEventListener('click', (e) => {
     if (e.target.classList.contains('edit-btn')) {
         const productId = e.target.getAttribute('data-id');
         console.log(productId);
-        
 
         window.location.href = `products.html?id=${productId}`;
     }
@@ -88,4 +77,8 @@ document.addEventListener('click', (e) => {
         }
 
     }
+})
+
+document.getElementById('log-out').addEventListener('click', () => {
+    localStorage.removeItem('token');
 })

@@ -13,12 +13,17 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+
 
 
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+	
+	private final AuthFilter authFilter;
 
 	
 	 @Bean
@@ -36,7 +41,7 @@ public class SecurityConfig {
 	            		.authenticationEntryPoint((request,response,authException) -> {
 	            			response.sendError(HttpServletResponse.SC_UNAUTHORIZED); //401
 	            		}))
-
+	            .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
 	            .build();
 	    }
 

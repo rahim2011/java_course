@@ -41,6 +41,7 @@ public class ProductService {
 		product.setImage(d.getImage());
 		product.setCategory(d.getCategory());
 		product.setRating(d.getRating());
+		product.setDescription(d.getDescription());
 		product.setUserId(id);
 		productRepository.save(product);
 	}
@@ -70,6 +71,7 @@ public class ProductService {
 			response.setImage(product.getImage());
 			response.setCategory(product.getCategory());
 			response.setRating(product.getRating());
+			response.setDescription(product.getDescription());
 		}else {
 			throw new OurRuntimeException(null, "id tapilmadi");
 		}
@@ -89,6 +91,7 @@ public class ProductService {
 			product.setImage(dto.getImage());
 			product.setCategory(dto.getCategory());
 			product.setRating(dto.getRating());
+			product.setDescription(dto.getDescription());
 			productRepository.save(product);
 		}else {
 			throw new OurRuntimeException(null, "id tapilmadi");
@@ -125,6 +128,7 @@ public class ProductService {
 					response.setImage(product.getImage());
 					response.setCategory(product.getCategory());
 					response.setRating(product.getRating());
+					response.setDescription(product.getDescription());
 					return response;
 				})
 				.collect(Collectors.toList());
@@ -148,6 +152,7 @@ public class ProductService {
 			response.setImage(product.getImage());
 			response.setCategory(product.getCategory());
 			response.setRating(product.getRating());
+			response.setDescription(product.getDescription());
 			return response;
 		})
 				.collect(Collectors.toList());
