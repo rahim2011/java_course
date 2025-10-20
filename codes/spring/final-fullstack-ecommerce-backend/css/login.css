@@ -8,7 +8,7 @@ header{
     width: 100%;
 }
 .headers{
-  background-color: red;         
+  background-color: rgb(254, 82, 82);         
   color: white;                   
   text-align: center;            
   padding: 10px 0;                
@@ -58,7 +58,7 @@ header{
 
 .button{
     color: white;
-    background-color: red;
+    background-color: rgb(255, 66, 66);
     width: 70px;
     padding: 5px;
     border-radius: 5px;
@@ -102,7 +102,7 @@ footer {
   background: #db4444;
   color: #fff;
   padding: 40px 0;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .footer-container {

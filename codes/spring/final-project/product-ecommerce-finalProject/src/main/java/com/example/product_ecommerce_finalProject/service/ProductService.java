@@ -37,6 +37,7 @@ public class ProductService {
 		Product product = new Product();
 		product.setId(null);
 		product.setName(d.getName());
+		product.setModel(d.getModel());
 		product.setPrice(d.getPrice());
 		product.setImage(d.getImage());
 		product.setCategory(d.getCategory());
@@ -67,6 +68,7 @@ public class ProductService {
 			Product product = byId.get();
 			response.setId(product.getId());
 			response.setName(product.getName());
+			response.setModel(product.getModel());
 			response.setPrice(product.getPrice());
 			response.setImage(product.getImage());
 			response.setCategory(product.getCategory());
@@ -87,6 +89,7 @@ public class ProductService {
 			Product product = byId.get();
 			product.setId(dto.getId());
 			product.setName(dto.getName());
+			product.setModel(dto.getModel());
 			product.setPrice(dto.getPrice());
 			product.setImage(dto.getImage());
 			product.setCategory(dto.getCategory());
@@ -124,6 +127,7 @@ public class ProductService {
 					ProductResponseDto response = new ProductResponseDto();
 					response.setId(product.getId());
 					response.setName(product.getName());
+					response.setModel(product.getModel());
 					response.setPrice(product.getPrice());
 					response.setImage(product.getImage());
 					response.setCategory(product.getCategory());
@@ -148,6 +152,7 @@ public class ProductService {
 			ProductResponseDto response = new ProductResponseDto();
 			response.setId(product.getId());
 			response.setName(product.getName());
+			response.setModel(product.getModel());
 			response.setPrice(product.getPrice());
 			response.setImage(product.getImage());
 			response.setCategory(product.getCategory());

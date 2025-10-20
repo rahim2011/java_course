@@ -43,9 +43,9 @@ public class UserController {
 		return userService.login(d);
 	}
 	
-	@GetMapping(path = "/profile ")
-	public ResponseEntity  <Map<String, String>> getUserProfile(@RequestHeader("Authorization") String token){       
-		if (token.startsWith("Bearer")) {
+	@GetMapping(path = "/profile")
+	public ResponseEntity<Map<String, String>> getUserProfile(@RequestHeader("Authorization") String token){       
+		if (token.startsWith("Bearer")){
 			token= token.substring(7);
 		}
 		

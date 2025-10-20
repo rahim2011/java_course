@@ -2,21 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/productDetail.css">
-    <title>Product Detail</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="./css/productDetail.css">
+  <title>Product Detail</title>
 </head>
 
 <body>
-    
- <div class="sale-banner">
-    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" style="color:white; text-decoration:underline;">Shop Now</a>
+
+  <div class="sale-banner">
+    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="shop.html"
+      style="color:white; text-decoration:underline;">Shop Now</a>
   </div>
 
   <header class="navbar">
     <h1 class="logo">E-commerce</h1>
     <nav class="nav-links">
+      <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
       <a href="index.html">Home</a>
       <a href="contact.html">Contact</a>
       <a href="about.html">About</a>
@@ -25,23 +32,25 @@
     </nav>
   </header>
 
-    <main>
-        <div class="sub-main">
-           <div class="left-side">
-                <img src="" alt="">
-           </div>
-           <div class="right-side">
-                <a href="#"></a>
-                <h3></h3>
-                <p></p>
-                <button>Add To Cart</button>
-           </div>
-        </div>
-    </main>
-   
+  <main>
+    <div class="sub-main">
+      <div class="left-side">
+        <img src="" alt="">
+      </div>
+      <div class="right-side">
+        <a href="#"></a>
+        <h3></h3>
+        <p></p>
+        <span id="rating"></span>
+        <br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+  </main>
 
 
-     <footer>
+
+  <footer>
     <div class="footer-container">
       <div class="footer-col">
         <h4>Exclusive</h4>
@@ -70,5 +79,5 @@
     </div>
   </footer>
 
-    <script src="./js/productDetail.js"></script>
+  <script src="./js/productDetail.js"></script>
 </body>

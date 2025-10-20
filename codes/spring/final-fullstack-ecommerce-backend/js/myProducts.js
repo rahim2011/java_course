@@ -79,6 +79,6 @@ document.addEventListener('click', (e) => {
     }
 })
 
-document.getElementById('log-out').addEventListener('click', () => {
-    localStorage.removeItem('token');
-})
+// document.getElementById('log-out').addEventListener('click', () => {
+//     localStorage.removeItem('token');
+// })

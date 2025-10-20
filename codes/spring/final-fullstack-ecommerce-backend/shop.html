@@ -2,56 +2,64 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/shop.css">
-    <title>Shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/shop.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <title>Shop</title>
 </head>
 
 <body>
-   
- <div class="sale-banner">
-    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" style="color:white; text-decoration:underline;">Shop Now</a>
+
+  <div class="sale-banner">
+    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="shop.html"
+      style="color:white; text-decoration:underline;">Shop Now</a>
   </div>
 
   <header class="navbar">
     <h1 class="logo">E-commerce</h1>
     <nav class="nav-links">
+      <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
       <a href="index.html">Home</a>
       <a href="contact.html">Contact</a>
       <a href="about.html">About</a>
-      <a href="signup.html">Sign Up</a>
+      <a href="create_accout.html">Sign Up</a>
       <a href="shop.html" class="shop-btn">Shop</a>
+      <button id="log-out">Log out</button>
     </nav>
   </header>
 
-    <a href="#">
-        <main>
-        <div class="main-part1">
-            <div class="sub-main-part1">
-                <div class="search-input">
-                    <input type="search" placeholder="search" id="searchInput" oninput="searchProduct()">
-                </div>
-                <div class="filter-input">
-                    <select id="sortSelect">
-                        <option value="">Sort By</option>
-                        <option value="priceAsc">Sort by: Price (Low to High)</option>
-                        <option value="priceDesc">Sort by: Price (High to Low)</option>
-                    </select>
-                </div>
-            </div>
+  <a href="#">
+    <main>
+      <div class="main-part1">
+        <div class="sub-main-part1">
+          <div class="search-input">
+            <input type="search" placeholder="search" id="searchInput" oninput="searchProduct()">
+          </div>
+          <div class="filter-input">
+            <select id="sortSelect">
+              <option value="">Sort By</option>
+              <option value="priceAsc">Sort by: Price (Low to High)</option>
+              <option value="priceDesc">Sort by: Price (High to Low)</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="sub-main">
+        <div class="cards">
 
         </div>
-        <div class="sub-main">
-            <div class="cards">
-
-            </div>
-        </div>
+      </div>
     </main>
-    </a>
-      
+  </a>
 
-     <footer>
+
+  <footer>
     <div class="footer-container">
       <div class="footer-col">
         <h4>Exclusive</h4>
@@ -80,5 +88,5 @@
     </div>
   </footer>
 
-    <script src="./js/shop.js"></script>
+  <script src="./js/shop.js"></script>
 </body>

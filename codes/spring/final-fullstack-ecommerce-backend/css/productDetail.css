@@ -56,6 +56,10 @@ body{
       border-radius: 4px;
     }
 
+    .sub-main{
+      display: flex;
+      gap: 20px;
+    }
 
 
 

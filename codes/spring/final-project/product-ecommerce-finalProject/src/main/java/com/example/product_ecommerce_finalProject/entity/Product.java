@@ -23,6 +23,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private String model;
 	private Double price;
 	private String category;
 	private Integer rating;

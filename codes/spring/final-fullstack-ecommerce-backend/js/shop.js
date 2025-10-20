@@ -2,6 +2,8 @@
 function showProducts(){
 
     const token = localStorage.getItem('token');
+if (token) {
+    
 
     fetch('http://localhost:8086/products/all', {
         method: 'GET',
@@ -33,6 +35,8 @@ function showProducts(){
                 let p = document.createElement('p');
                 p.textContent = element.price + " AZN";
 
+
+                
                 let addToCardBtn = document.createElement('button');
                 addToCardBtn.textContent = 'add to card';
                 addToCardBtn.setAttribute('data-id', element.id);
@@ -46,6 +50,9 @@ function showProducts(){
 
                 })
 
+       
+
+
                 addToCardBtn.style.backgroundColor = 'black';
                 addToCardBtn.style.color = 'white';
                 addToCardBtn.style.border = 'none';
@@ -53,18 +60,24 @@ function showProducts(){
                 addToCardBtn.style.padding = '4px';
                 addToCardBtn.style.cursor = 'pointer';
 
-
+const rate = document.createElement('p');
+        let stars = '';
+        for (let i = 0; i < element.rating; i++) {
+            stars += '<i class="fa-solid fa-star"></i>';
+        }
+        rate.innerHTML = stars;
 
                 imgDiv.append(image);
                 cardDiv.append(imgDiv);
                 cardDiv.append(h5);
                 cardDiv.append(p);
+                  cardDiv.appendChild(rate);
                 cardDiv.append(addToCardBtn);
-
                 cardsDiv.append(cardDiv);
             });
         }
     })
+    }
 }
 
 showProducts();
@@ -136,6 +149,9 @@ function sortProducts(){
     sortSelect.addEventListener('change', () => {
         let sortValue = document.getElementById('sortSelect').value;
 
+        if (token) {
+            
+       
         fetch(`http://localhost:8086/products/sort?sort=${sortValue}`, {
             method: 'GET',
             headers: {
@@ -186,9 +202,10 @@ function sortProducts(){
                 cardsDiv.append(cardDiv);
             });
 
-        })
+        }) }
     })
 }
+ 
 
 sortProducts();
 
@@ -224,6 +241,18 @@ function addToCart(productId){
 }
 
 
-document.getElementById('log-out').addEventListener('click', () => {
+/*Log out buttonun deyisdirilmesi */
+document.getElementById('log-out').addEventListener('click', (e) => {
     localStorage.removeItem('token');
-})
+
+    e.target.textContent="Log in";
+
+    if (!token) {
+        window.location.href="login.html";
+    }
+    else{
+    window.location.href="shop.html";
+    }
+
+}
+)

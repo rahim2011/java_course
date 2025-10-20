@@ -22,6 +22,13 @@ function getProduct() {
 
             let p = document.querySelector('.right-side p');
             p.textContent = object.price + " AZN";
+
+
+            let stars = '';
+           for (let index = 0; index < object.rating; index++) {
+                stars+='<i class="fa-solid fa-star"></i>';
+           }
+           document.getElementById('rating').innerHTML = stars;
         })
 }
 
@@ -58,7 +65,7 @@ function addToCart() {
 }
 
 addToCart()
-addToCart()
+
 
 document.getElementById('log-out').addEventListener('click', () => {
     localStorage.removeItem('token');

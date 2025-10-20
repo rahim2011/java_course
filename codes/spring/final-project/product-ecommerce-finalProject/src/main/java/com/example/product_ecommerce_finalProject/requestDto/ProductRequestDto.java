@@ -12,6 +12,7 @@ import lombok.Setter;
 public class ProductRequestDto {
 	private Integer id;
 	private String name;
+	private String model;
 	private Double price;
 	private String image;
 	private String category;
