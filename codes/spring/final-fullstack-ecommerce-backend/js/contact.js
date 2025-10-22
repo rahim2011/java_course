@@ -12,3 +12,20 @@ registerForm.addEventListener('submit', (e) => {
     }
     
 })
+
+
+/*Log out buttonu */
+document.getElementById('log-out').addEventListener('click', (e) => {
+    localStorage.removeItem('token');
+
+    e.target.textContent="Log in";
+
+    if (!token) {
+        window.location.href="login.html";
+    }
+    else{
+    window.location.href="shop.html";
+    }
+
+}
+)

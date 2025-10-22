@@ -55,7 +55,14 @@ body{
     }
 
 
-
+#log-out{
+      color: white;
+  background-color: #db4444;
+  border: none;
+  border-radius: 3px;
+  width: 80px;
+  height: 30px;
+}
 
 
 footer {
@@ -144,9 +151,13 @@ button:hover {
   background-color: #e63e3e;
 }
 
+
+
 /* responsive for smaller screens */
 @media (max-width: 768px) {
   .input-row {
     flex-direction: column;
   }
 }
+
+

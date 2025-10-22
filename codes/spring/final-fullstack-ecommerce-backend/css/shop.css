@@ -274,3 +274,13 @@ footer {
     width: 100%;
   }
 }
+
+
+#log-out{
+      color: white;
+  background-color: #db4444;
+  border: none;
+  border-radius: 3px;
+  width: 80px;
+  height: 30px;
+}
