@@ -42,7 +42,7 @@ function loadOnTable() {
                     </td>
                     <td>
                         <div>
-                            <img src="./image/bin.png" class="delete-btn" data-id="${cart.id}" style="width:25px; height:25px; object-fir:cover; cursor:pointer;" />
+                            <img src="./image/bin.jpg" class="delete-btn" data-id="${cart.id}" style="width:25px; height:25px; object-fir:cover; cursor:pointer;" />
                         </div>
                     </td>
                 </tr>
@@ -50,8 +50,8 @@ function loadOnTable() {
             });
 
             document.getElementById('tbody').innerHTML = tableContent;
-            document.querySelector('.subtotal p').textContent = total;
-            document.querySelector('.total p').textContent = total;
+            document.querySelector('#subtotal').textContent = total;
+            document.querySelector('#total').textContent = total;   
 
             document.querySelectorAll('.quantity-input').forEach(input => {
                 input.addEventListener('change', (e) => {
@@ -109,7 +109,7 @@ function deleteFromCart() {
 
 deleteFromCart();
 
-document.querySelector(".btn button").addEventListener('click', () => {
+document.querySelector(".checkout-btn").addEventListener('click', () => {
 
     const token = localStorage.getItem('token');
 
@@ -130,6 +130,29 @@ document.querySelector(".btn button").addEventListener('click', () => {
     })
 })
 
-document.getElementById('log-out').addEventListener('click', () => {
-    localStorage.removeItem('token');
+// document.getElementById('log-out').addEventListener('click', () => {
+//     localStorage.removeItem('token');
+// })
+
+
+const btn = document.getElementById('log-out');
+
+window.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        btn.textContent = "Log out";
+    } else {
+        btn.textContent = "Log in";
+    }
+});
+
+btn.addEventListener('click', (e) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        localStorage.removeItem('token');
+        e.target.textContent = "Log in";
+        window.location.href = "login.html";
+    } else {
+        window.location.href = "login.html";
+    }
 })

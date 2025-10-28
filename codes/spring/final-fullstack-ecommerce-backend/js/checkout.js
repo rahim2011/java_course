@@ -158,9 +158,8 @@ function getSubTotal() {
         })
 }
 
-getSubTotal()
-getSubTotal()
+getSubTotal();
 
-document.getElementById('log-out').addEventListener('click', () => {
-    localStorage.removeItem('token');
-})
+// document.getElementById('log-out').addEventListener('click', () => {
+//     localStorage.removeItem('token');
+// })

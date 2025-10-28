@@ -1,0 +1,109 @@
+
+/* header*/
+    .sale-banner {
+      background-color: rgb(255, 71, 71);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+  
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      border-bottom: 3px solid rgb(255, 71, 71);
+
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      margin-left: 25px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: rgb(255, 71, 71);
+    }
+
+    .shop-btn {
+      background-color:  rgb(255, 71, 71);
+      color: white !important;
+      padding: 6px 14px;
+      border-radius: 4px;
+    }
+
+
+
+
+
+
+
+/* 🔻 Footer */
+footer {
+  background: #db4444;
+  color: #fff;
+  padding: 40px 0;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  text-align: left;
+  padding: 0 20px;
+}
+
+.footer-col h4 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-col p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+
+/* Text place */
+.first_name,
+.last_name,
+.country,
+.adress,
+.City-Town,
+.phone,
+.email,
+.cart_number,
+.zip_code,
+.expiry_month,
+.expiry_year{
+    display: flex;
+    margin-bottom: 20px;
+      font-size: 13px;
+  line-height: 1.5;
+}
+
+.sub-main p{
+  font-size: 22px;
+}
+
+.sub-main{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  gap: 15px 40px; /* row gap and column gap */
+  padding: 20px;
+}
