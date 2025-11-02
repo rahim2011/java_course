@@ -54,11 +54,11 @@ public class OrderService {
 	public List<OrderResponseDto> getAllOrders() {
 
 	
-
+  
 		List<Order> orders = orderRepository.findAll();
 		return orders.stream().map(order -> {
 		OrderResponseDto response = new OrderResponseDto();
-
+            response.setId(order.getId());
 			response.setFirstName(order.getFirstName());
 			response.setLastName(order.getLastName());
 			response.setCountry(order.getCountry());

@@ -123,6 +123,7 @@ document.getElementById('orderBtn').addEventListener('click', () => {
                 }
             })
     }
+    window.location.href="orderDetail.html";
 
 })
 

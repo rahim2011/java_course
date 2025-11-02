@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.product_ecommerce_finalProject.entity.Order;
+
 import com.example.product_ecommerce_finalProject.exception.OurRuntimeException;
 import com.example.product_ecommerce_finalProject.requestDto.OrderRequestDto;
 import com.example.product_ecommerce_finalProject.response.OrderResponseDto;
@@ -21,9 +21,10 @@ import com.example.product_ecommerce_finalProject.service.OrderService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/orders")
-@CrossOrigin(origins = "*")
+
 public class OrderController {
 
 	@Autowired
@@ -39,7 +40,7 @@ public class OrderController {
 	}
 	
 	/*get order apisi*/
-	@GetMapping(path="/getOrder")
+	@GetMapping(path= "/getOrder")
 	  public List<OrderResponseDto> getAllOrders() {
         return orderService.getAllOrders();
 	

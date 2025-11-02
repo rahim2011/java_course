@@ -79,25 +79,25 @@ footer {
 
 
 /* Text place */
-.first_name,
-.last_name,
-.country,
-.adress,
-.City-Town,
-.phone,
-.email,
-.cart_number,
-.zip_code,
-.expiry_month,
-.expiry_year{
+#first_name,
+#last_name,
+#country,
+#address,
+#City-Town,
+#phone,
+#email,
+#cart_number,
+#zip_code,
+#expiry_month,
+#expiry_year{
     display: flex;
     margin-bottom: 20px;
-      font-size: 13px;
   line-height: 1.5;
 }
 
-.sub-main p{
-  font-size: 22px;
+.sub-main div p{
+  font-size: 25px;
+  
 }
 
 .sub-main{
@@ -106,4 +106,17 @@ footer {
   grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
   gap: 15px 40px; /* row gap and column gap */
   padding: 20px;
+}
+
+#log-out{
+    color: white;
+  background-color: #db4444;
+  border: none;
+  border-radius: 3px;
+  width: 80px;
+  height: 30px;
+}
+.sub-main div{
+  display:flex;
+  gap: 5px;
 }
